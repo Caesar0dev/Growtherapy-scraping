@@ -12,15 +12,6 @@ with open('URL.csv', mode='r') as file:
         Region = row[0]
         driver.get(row[1])
 
-        lenOfPage = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-        match=False
-        while(match==False):
-            lastCount = lenOfPage
-            time.sleep(3)
-            lenOfPage = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-            if lastCount==lenOfPage:
-                match=True
-
         provider_links = []
         provider_elements = driver.find_elements(By.CSS_SELECTOR, 'div.pb-8>div>div:nth-child(4)>div:nth-child(3)>a:nth-child(odd)')
         for provider_element in provider_elements:
